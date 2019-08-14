@@ -118,7 +118,7 @@
         <ajaxcart>
             <general>
                 <enable>1</enable>
-                <update_blocks>a:2:{s:2:"id";a:3:{i:0;s:17:".block.block-cart";i:1;s:14:".header .links";i:2;s:26:".checkout-cart-index .cart";}s:3:"xml";a:3:{i:0;s:12:"cart_sidebar";i:1;s:9:"top.links";i:2;s:13:"checkout.cart";}}</update_blocks>
+                <update_blocks>a:2:{s:2:"id";a:4:{i:0;s:17:".block.block-cart";i:1;s:14:".header .links";i:2;s:26:".checkout-cart-index .cart";i:3;s:16:".header-minicart";}s:3:"xml";a:4:{i:0;s:12:"cart_sidebar";i:1;s:9:"top.links";i:2;s:13:"checkout.cart";i:3;s:13:"minicart_head";}}</update_blocks>
             </general>
         </ajaxcart>
     </default>

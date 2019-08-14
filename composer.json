@@ -1,7 +1,7 @@
 {
     "name": "OpenMageModuleFostering/HardikAjaxCart",
     "type": "magento-module",
-    "license": "OSL-v3.0",
+    "license": "Attribution-NonCommercial-4.0-International",
     "homepage": "",
     "description": "provides ajax cart functionality. It is highly customizable.",
     "authors": [

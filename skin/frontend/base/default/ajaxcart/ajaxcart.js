@@ -12,7 +12,7 @@ var ajaxcart = {
                 setLocation($(e).readAttribute('href'));
                 Event.stop(event);
             });
-        });
+        });        
     },
     ajaxCartSubmit: function (obj) {
         var _this = this;
@@ -270,12 +270,13 @@ var ajaxcart = {
                         var dom_selector = block.key;
                         if($$(dom_selector)) {
                             $$(dom_selector).each(function(e){
-                                $(e).replace(block.value);
+                                $(e).update(block.value);
                             });
                         }
                     }
                 });
                 _this.bindEvents();
+                _this.bindNewEvents();
 
                 // show details tooltip
                 truncateOptions();
@@ -286,12 +287,65 @@ var ajaxcart = {
 
     },
     
+    bindNewEvents: function() {
+        // =============================================
+        // Skip Links (for Magento 1.9)
+        // =============================================
+        
+        // Avoid PrototypeJS conflicts, assign jQuery to $j instead of $
+        if (typeof(jQuery) != undefined) {
+
+            var $j = jQuery.noConflict();
+            var skipContents = $j('.skip-content');
+            var skipLinks = $j('.skip-link');
+
+            if (typeof(skipContents) != undefined && typeof(skipLinks) != undefined) {
+                
+                skipLinks.on('click', function (e) {
+                    e.preventDefault();
+
+                    var self = $j(this);
+                    var target = self.attr('href');
+
+                    // Get target element
+                    var elem = $j(target);
+
+                    // Check if stub is open
+                    var isSkipContentOpen = elem.hasClass('skip-active') ? 1 : 0;
+
+                    // Hide all stubs
+                    skipLinks.removeClass('skip-active');
+                    skipContents.removeClass('skip-active');
+
+                    // Toggle stubs
+                    if (isSkipContentOpen) {
+                        self.removeClass('skip-active');
+                    } else {
+                        self.addClass('skip-active');
+                        elem.addClass('skip-active');
+                    }
+                });
+
+                $j('#header-cart').on('click', '.skip-link-close', function(e) {
+                    var parent = $j(this).parents('.skip-content');
+                    var link = parent.siblings('.skip-link');
+
+                    parent.removeClass('skip-active');
+                    link.removeClass('skip-active');
+
+                    e.preventDefault();
+                });
+            }
+        }
+    },
+    
     showPopup: function(block) {
         try {
             var _this = this;
             //$$('body')[0].insert({bottom: new Element('div', {id: 'modalboxOptions'}).update(block)});
             var element = new Element('div', {
-                id: 'modalboxOptions'
+                id: 'modalboxOptions',
+                class: 'product-view'
             }).update(block);
             
             var viewport = document.viewport.getDimensions();
