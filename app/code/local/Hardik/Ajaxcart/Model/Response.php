@@ -41,6 +41,14 @@ class Hardik_Ajaxcart_Model_Response extends Mage_Catalog_Block_Product_Abstract
         $_product = Mage::registry('current_product');
 
         $layout->getUpdate()->addHandle('ajaxcart_configurable_options');
+        
+        if ($_product->getTypeId() == 'bundle')
+        $layout->getUpdate()->addHandle('ajaxcart_bundle_options');        
+
+        // set unique cache ID to bypass caching
+        $cacheId = 'LAYOUT_'.Mage::app()->getStore()->getId().md5(join('__', $layout->getUpdate()->getHandles()));
+        $layout->getUpdate()->setCacheId($cacheId);
+
         $layout->getUpdate()->load();
         $layout->generateXml();
         $layout->generateBlocks();
@@ -49,6 +57,14 @@ class Hardik_Ajaxcart_Model_Response extends Mage_Catalog_Block_Product_Abstract
         
         if ($value) {
             $res .= $value->toHtml();
+        }
+        
+        if ($_product->getTypeId() == 'bundle') {
+            $value = $layout->getBlock('product.info.bundle');        
+            
+            if ($value) {
+                $res .= $value->toHtml();
+            }
         }
         
         if (!empty($res)) {
@@ -61,6 +77,11 @@ class Hardik_Ajaxcart_Model_Response extends Mage_Catalog_Block_Product_Abstract
         $res = '';
 
         $layout->getUpdate()->addHandle('ajaxcart_grouped_options');
+
+        // set unique cache ID to bypass caching
+        $cacheId = 'LAYOUT_'.Mage::app()->getStore()->getId().md5(join('__', $layout->getUpdate()->getHandles()));
+        $layout->getUpdate()->setCacheId($cacheId);
+
         $layout->getUpdate()->load();
         $layout->generateXml();
         $layout->generateBlocks();

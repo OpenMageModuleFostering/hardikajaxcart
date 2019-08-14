@@ -213,7 +213,7 @@ var ajaxcart = {
                         document.location.reload(true);
                     }
                 } catch(e) {
-                //window.location.href = url;
+                window.location.href = url;
                 //document.location.reload(true);
                 }
             }
@@ -276,6 +276,9 @@ var ajaxcart = {
                     }
                 });
                 _this.bindEvents();
+
+                // show details tooltip
+                truncateOptions();
             } catch(e) {
                 console.log(e);
             }
@@ -287,12 +290,16 @@ var ajaxcart = {
         try {
             var _this = this;
             //$$('body')[0].insert({bottom: new Element('div', {id: 'modalboxOptions'}).update(block)});
-            Modalbox.show(new Element('div', {
+            var element = new Element('div', {
                 id: 'modalboxOptions'
-            }).update(block),
+            }).update(block);
+            
+            var viewport = document.viewport.getDimensions();
+            Modalbox.show(element,
             {
                 title: 'Please Select Options', 
-                width: 300,
+                width: 510,
+                height: viewport.height,
                 afterLoad: function() {
                     _this.extractScripts(block);
                     _this.bindEvents();
@@ -334,6 +341,8 @@ var setLocation = (function() {
         }
     };
 })();
+
+setPLocation = setLocation;
 
 document.observe("dom:loaded", function() {
     ajaxcart.initialize();

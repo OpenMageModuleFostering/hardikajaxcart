@@ -63,7 +63,7 @@ class Hardik_Ajaxcart_Model_Observer {
             $_response = Mage::getModel('ajaxcart/response');
 
             $product = Mage::registry('current_product');
-            if (!$product->isConfigurable()){return false;exit;}
+            if (!$product->isConfigurable() && !$product->getTypeId() == 'bundle'){return false;exit;}
 
             //append configurable options block
             $_response->addConfigurableOptionsBlock($_response);
