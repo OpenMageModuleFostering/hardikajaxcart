@@ -67,7 +67,9 @@ var ajaxcart = {
                     iframe.observe('load', function(){
                         // Handle the response content...
                         try{
-                            var res = iframe.contentWindow.document.body.innerText;
+                            var doc = iframe.contentDocument ? iframe.contentDocument : (iframe.contentWindow.document || iframe.document);
+                            console.log(doc);
+                            var res = doc.body.innerText ? doc.body.innerText : doc.body.textContent;
                             res = res.evalJSON();
 
                             if(res) {
