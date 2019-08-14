@@ -57,47 +57,99 @@ var ajaxcart = {
 					}
 				});
 			} else {
-				var url	 = 	obj.form.action,
-					data =	obj.form.serialize();
+                if(typeof obj.form.down('input[type=file]') != 'undefined') {
 
-             	new Ajax.Request(url, {
-					method		: 'post',
-					postBody	: data,
-					onCreate	: function() {
-						_this.g.warn("Processing", {life: 5});
-					},
-					onSuccess	: function(response) {
-						// Handle the response content...
-						try{
-						    var res = response.responseText.evalJSON();
-						    
-						    if(res) {
-								if(res.r == 'success') {
-								    if(res.message) {
-										_this.showSuccess(res.message);
-									} else {
-										_this.showSuccess('Item was added into cart.');
-									}
+                    //use iframe
+
+                    obj.form.insert('<iframe id="upload_target" name="upload_target" src="" style="width:0;height:0;border:0px solid #fff;"></iframe>');
+
+                    var iframe = $('upload_target');
+                    iframe.observe('load', function(){
+                        // Handle the response content...
+                        try{
+                            var res = iframe.contentWindow.document.body.innerText;
+                            res = res.evalJSON();
+
+                            if(res) {
+                                if(res.r == 'success') {
+                                    if(res.message) {
+                                        _this.showSuccess(res.message);
+                                    } else {
+                                        _this.showSuccess('Item was added into cart.');
+                                    }
 
                                     //update all blocks here
                                     _this.updateBlocks(res.update_blocks);
 
-								} else {
-									if(typeof res.messages != 'undefined') {
-										_this.showError(res.messages);
-									} else {
-										_this.showError("Something bad happened");
-									}
-								}
-							} else {
-								_this.showError("Something bad happened");
-							}
-						} catch(e) {
-							console.log(e);
-							_this.showError("Something bad happened");
-						}
-					}
-				});
+                                } else {
+                                    if(typeof res.messages != 'undefined') {
+                                        _this.showError(res.messages);
+                                    } else {
+                                        _this.showError("Something bad happened");
+                                    }
+                                }
+                            } else {
+                                _this.showError("Something bad happened");
+                            }
+                        } catch(e) {
+                            console.log(e);
+                            _this.showError("Something bad happened");
+                        }
+                    });
+
+                    obj.form.target = 'upload_target';
+
+                    //show loading
+                    _this.g.warn("Processing", {life: 5});
+
+                    obj.form.submit();
+                    return true;
+
+                } else {
+                    //use ajax
+
+                    var url	 = 	obj.form.action,
+                        data =	obj.form.serialize();
+
+                    new Ajax.Request(url, {
+                        method		: 'post',
+                        postBody	: data,
+                        onCreate	: function() {
+                            _this.g.warn("Processing", {life: 5});
+                        },
+                        onSuccess	: function(response) {
+                            // Handle the response content...
+                            try{
+                                var res = response.responseText.evalJSON();
+
+                                if(res) {
+                                    if(res.r == 'success') {
+                                        if(res.message) {
+                                            _this.showSuccess(res.message);
+                                        } else {
+                                            _this.showSuccess('Item was added into cart.');
+                                        }
+
+                                        //update all blocks here
+                                        _this.updateBlocks(res.update_blocks);
+
+                                    } else {
+                                        if(typeof res.messages != 'undefined') {
+                                            _this.showError(res.messages);
+                                        } else {
+                                            _this.showError("Something bad happened");
+                                        }
+                                    }
+                                } else {
+                                    _this.showError("Something bad happened");
+                                }
+                            } catch(e) {
+                                console.log(e);
+                                _this.showError("Something bad happened");
+                            }
+                        }
+                    });
+                }
 			}
 		} catch(e) {
 			console.log(e);

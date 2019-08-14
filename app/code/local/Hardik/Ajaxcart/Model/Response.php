@@ -7,7 +7,7 @@ class Hardik_Ajaxcart_Model_Response extends Varien_Object
         Zend_Json::$useBuiltinEncoderDecoder = true;
         if ($this->getError()) $this->setR('error');
         else $this->setR('success');
-        Mage::app()->getFrontController()->getResponse()->setBody(Zend_Json::encode($this->getData()));
+        Mage::app()->getFrontController()->getResponse()->setHeader('Content-Type', 'text/plain')->setBody(Zend_Json::encode($this->getData()));
     }
 
     public function addUpdatedBlocks(&$_response) {
