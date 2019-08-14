@@ -1,24 +1,18 @@
 <?xml version="1.0"?>
 <package>
     <name>HardikAjaxCart</name>
-    <version>1.1.2</version>
+    <version>2.0.0</version>
     <stability>stable</stability>
     <license>OSL v3.0</license>
     <channel>community</channel>
     <extends/>
     <summary>provides ajax cart functionality. It is highly customizable.</summary>
-    <description>It is highly customizable. By default top links block, sidebar cart block and cart page's content blocks are added in update blocks list.&#xD;
-&#xD;
-If you want to add more blocks which should be updated, you can easily do so just by adding its name and block's parent class / ID selector.&#xD;
-&#xD;
-You can refer the default layout update entries in admin panel for further details.&#xD;
-&#xD;
-NOTE: Please confirm that the block which you are adding in layout update entries is under &lt;strong&gt;default&lt;/strong&gt; handle or under &lt;strong&gt;ajaxcart&lt;/strong&gt; handle. You can refer ajaxcart.xml frontend layout file for further details.</description>
-    <notes>fixed firefox and IE js error for file uploads.</notes>
+    <description>Now, it provides ajax add to cart functionality for configurable and group products too.</description>
+    <notes>Now, it provides ajax add to cart functionality for configurable and group products too.</notes>
     <authors><author><name>Hardik Gajjar</name><user>hardik_krishinc</user><email>hardik.gajjar@krishinc.com</email></author></authors>
-    <date>2013-01-03</date>
-    <time>05:01:52</time>
-    <contents><target name="magelocal"><dir name="Hardik"><dir name="Ajaxcart"><dir name="Block"><dir name="Adminhtml"><file name="Info.php" hash="8fab3b7d0b1390dcc80a037c66b1ba7f"/><file name="Url.php" hash="ed7b1ff4b0f4ad33d45cfd301dba4227"/></dir></dir><dir name="Helper"><file name="Data.php" hash="773174c4f49cccc57be68acb1e0027e5"/></dir><dir name="Model"><file name="Observer.php" hash="25a046b451673ced3055f9dbd16cbc08"/><file name="Response.php" hash="c8032d2b23f6073be31f33dd47a2448e"/></dir><dir name="controllers"><dir name="Checkout"><file name="CartController.php" hash="1fbdb0b12a18522a9aaafc46fda4c7e3"/></dir></dir><dir name="etc"><file name="config.xml" hash="6c4a3a9f259feac9f44d93e6f9fd032b"/><file name="system.xml" hash="70e92e5d3c03d7b462e72ba3a8eaca1f"/></dir></dir></dir></target><target name="mageskin"><dir name="frontend"><dir name="base"><dir name="default"><dir name="ajaxcart"><file name="ajaxcart.js" hash="e4a84177de5aa309f1b2b9ad498b66a6"/><file name="growler.css" hash="c13a01e28cb4eb98b1fbc4a419d906cf"/><file name="growler.js" hash="816d275972bbe9c048033643755fb194"/></dir></dir></dir></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="ajaxcart.xml" hash="c3ec794d08c15150d302bdfff95cec55"/></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Hardik_Ajaxcart.xml" hash="81451d4f81af3650b8151344bbc1e865"/></dir></target></contents>
+    <date>2013-03-09</date>
+    <time>06:19:57</time>
+    <contents><target name="mageetc"><dir name="modules"><file name="Hardik_Ajaxcart.xml" hash="81451d4f81af3650b8151344bbc1e865"/></dir></target><target name="magelocal"><dir name="Hardik"><dir name="Ajaxcart"><dir name="Block"><dir name="Adminhtml"><file name="Info.php" hash="8fab3b7d0b1390dcc80a037c66b1ba7f"/><file name="Url.php" hash="ed7b1ff4b0f4ad33d45cfd301dba4227"/></dir></dir><dir name="Helper"><file name="Data.php" hash="773174c4f49cccc57be68acb1e0027e5"/></dir><dir name="Model"><file name="Observer.php" hash="02e26817e97a3551aa073c8c94b95d7c"/><file name="Response.php" hash="868b38cbc9982d6d08640113304bc4ef"/></dir><dir name="controllers"><dir name="Checkout"><file name="CartController.php" hash="8e0e56d6627539bb6a342df80a80af9f"/></dir></dir><dir name="etc"><file name="config.xml" hash="672e7a86f4930c6957f3084bfff6a37e"/><file name="system.xml" hash="70e92e5d3c03d7b462e72ba3a8eaca1f"/></dir></dir></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="ajaxcart.xml" hash="8dc157b66eb88903fa06d4494b198580"/></dir><dir name="template"><dir name="ajaxcart"><file name="configurable_options.phtml" hash="c1d55b5cea9ba6fc2568251d99c3b789"/><file name="grouped_options.phtml" hash="7409b93efccff6dbabd5c4c8a19b0cda"/></dir></dir></dir></dir></dir></target><target name="mageskin"><dir name="frontend"><dir name="base"><dir name="default"><dir name="ajaxcart"><file name="ajaxcart.js" hash="2e6949c43c3bd312158da4e4107785ec"/><file name="growler.css" hash="c13a01e28cb4eb98b1fbc4a419d906cf"/><file name="growler.js" hash="816d275972bbe9c048033643755fb194"/><file name="modalbox.css" hash="9dfad4d258cbfe5af951f1bc7f7f82c7"/><file name="modalbox.js" hash="7aa6bdceed4379c80f47788ae21f1464"/></dir></dir></dir></dir></target></contents>
     <compatible/>
     <dependencies><required><php><min>5.2.0</min><max>6.0.0</max></php></required></dependencies>
 </package>
